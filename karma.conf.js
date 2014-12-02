@@ -28,6 +28,7 @@ module.exports = function(config) {
             'app/lib/angular-ui-router/release/angular-ui-router.js',
             'app/lib/firebase/firebase.js',
             'app/lib/angularfire/dist/angularfire.js',
+            'app/lib/ngCordova/dist/ng-cordova.js',
             <!-- endinjector -->
 
             'app/js/config.js',
