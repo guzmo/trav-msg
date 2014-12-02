@@ -26,6 +26,8 @@ module.exports = function(config) {
             'app/lib/angular-bootstrap/ui-bootstrap-tpls.js',
             'app/lib/angular-ui-utils/ui-utils.js',
             'app/lib/angular-ui-router/release/angular-ui-router.js',
+            'app/lib/firebase/firebase.js',
+            'app/lib/angularfire/dist/angularfire.js',
             <!-- endinjector -->
 
             'app/js/config.js',
