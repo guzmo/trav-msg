@@ -91,7 +91,14 @@ module.exports = function(grunt) {
                 }
             }
         },
-
+        sed: {
+            fixoauthRedirect: {
+                pattern: 'http://localhost:9000',
+                path: '<%= yeoman.dist %>',
+                replacement: 'http://localhost',
+                recursive: true
+            }
+        },
         jshint: {
             options: {
                 jshintrc: '.jshintrc',
@@ -354,7 +361,7 @@ module.exports = function(grunt) {
                         '*.{ico,png,txt}',
                         '.htaccess',
                         'index.html',
-                        'modules/*/views/*.html',
+                        'modules/*/views/**/*.html',
                         'img/{,*/}*.{webp}',
                         'fonts/*'
                     ]
@@ -434,23 +441,34 @@ module.exports = function(grunt) {
         'watch'
     ]);
 
-    grunt.registerTask('build', [
-        'clean:dist',
-        'injector',
-        'ngdocs',
-        'useminPrepare',
-        'concurrent:dist',
-        'autoprefixer',
-        'concat',
-        'ngmin',
-        'copy:dist',
-        'cdnify',
-        'cssmin',
-        'rev',
-        'usemin',
-        'htmlmin',
-        'comments:dist'
-    ]);
+
+
+    grunt.registerTask('build', function(target) {
+
+        var tasks = ['clean:dist',
+            'injector',
+            'ngdocs',
+            'useminPrepare',
+            'concurrent:dist',
+            'autoprefixer',
+            'concat',
+            'ngmin',
+            'copy:dist']
+
+        if (target == 'cordova') {
+            tasks.push('sed:fixoauthRedirect');
+        }
+
+        tasks.push('sed:fixoauthRedirect',
+            'cdnify',
+            'cssmin',
+            'rev',
+            'usemin',
+            'htmlmin',
+            'comments:dist')
+
+        grunt.task.run(tasks);
+    });
 
     grunt.registerTask('default', [
         'newer:jshint',

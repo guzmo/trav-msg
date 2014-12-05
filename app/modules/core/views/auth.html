@@ -1,0 +1,4 @@
+<div class="oauth" ng-cloak>
+  <a href="#" class="logged-out" ng-if="!isLoggedIn()" ng-click="googleLogin()">Login</a>
+  <a href="#" class="logged-in"  ng-if="isLoggedIn()"  ng-click="logout()">Logout {{profile.email}}</a>
+</div>

@@ -29,6 +29,7 @@ module.exports = function(config) {
             'app/lib/firebase/firebase.js',
             'app/lib/angularfire/dist/angularfire.js',
             'app/lib/ngCordova/dist/ng-cordova.js',
+            'app/lib/ngstorage/ngStorage.js',
             <!-- endinjector -->
 
             'app/js/config.js',

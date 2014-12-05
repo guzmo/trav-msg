@@ -8,10 +8,11 @@
  * @description Defines the routes and other config within the core module
  */
 angular
-    .module('core')
+    .module(ApplicationConfiguration.applicationModuleName)
     .config(['$stateProvider',
         '$urlRouterProvider',
-        function($stateProvider, $urlRouterProvider) {
+        '$locationProvider',
+        function($stateProvider, $urlRouterProvider, $locationProvider) {
 
             $urlRouterProvider.otherwise('/');
 
@@ -29,7 +30,27 @@ angular
                 .state('home', {
                     url: '/',
                     templateUrl: 'modules/core/views/home.html',
-                    controller: 'HomeController'
-                });
+                    controller: 'HomeController',
+                    resolve: {
+                        data: function() {
+                            console.log("reload home");
+                        }
+                    }
+                })
+                .state('start', {
+                    url: '/start',
+                    templateUrl: 'modules/core/views/start.html',
+                    controller: 'OwnerStartPageController',
+                    resolve: {
+                        data: ['$state', 'AuthFactory', function($state, AuthFactory) {
+                            console.log("PELLE LOAD");
+                            if (!AuthFactory.hasToken()) {
+                                console.log("PELLE LOAD fail not auth");
+                                $state.go('/');
+                            }
+                        }]
+                    }
+                })
+
         }
     ]);

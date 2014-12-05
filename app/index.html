@@ -16,35 +16,27 @@
         <!-- injector:css -->
         <link rel="stylesheet" href="css/customcordova.css">
         <link rel="stylesheet" href="css/demo.css">
+        <link rel="stylesheet" href="css/style.css">
         <!-- endinjector -->
     <!-- endbuild -->
-    <script src="cordova.js"></script>
   </head>
 
-  <body ng-app="angularjsapp">
+  <body>
     <!-- =================== Navigation bar =================== -->
-    <header class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand visible-xs" href="#">
-                        angularjsapp
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <div class="header-placeholder"></div>
+        <div role="main">
+            <header class="bs-header text-center navbar-fixed-top" id="overview">
+                <div class="container">
+                    <h1 id="app-heading">
+                        <img src="img/logo.png">
+                        <a ui-sref="home" class="headerlink">Travinfo Message </a>
+                    </h1>
+                    <oauth></oauth>
+                </div>
+            </header>
+        </div>
+    </div>
     <div role="main">
-        <header class="bs-header text-center" id="overview">
-            <div class="container">
-                <h1 id="app-heading">
-                    AngularJs Cordova application
-                </h1>
-            </div>
-        </header>
-
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -58,39 +50,45 @@
 
     <footer class="footer">
         <div class="container">
-            <p>Code licensed under <a href="https://github.com/keshavos/generator-angularjs-cordova/">MIT License</a>.</p>
+            <p class="centerText">www.travappar.se</p>
         </div>
     </footer>
 
     <!-- build:js scripts/vendor.js -->
-        <!-- injector:bowerjs -->
-        <script src="lib/jquery/dist/jquery.js"></script>
-        <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="lib/angular/angular.js"></script>
-        <script src="lib/angular-resource/angular-resource.js"></script>
-        <script src="lib/angular-mocks/angular-mocks.js"></script>
-        <script src="lib/angular-cookies/angular-cookies.js"></script>
-        <script src="lib/angular-animate/angular-animate.js"></script>
-        <script src="lib/angular-touch/angular-touch.js"></script>
-        <script src="lib/angular-sanitize/angular-sanitize.js"></script>
-        <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-        <script src="lib/angular-ui-utils/ui-utils.js"></script>
-        <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="lib/firebase/firebase.js"></script>
-        <script src="lib/angularfire/dist/angularfire.js"></script>
-        <script src="lib/ngCordova/dist/ng-cordova.js"></script>
-        <!-- endinjector -->
+    <!-- injector:bowerjs -->
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/angular-mocks/angular-mocks.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular-touch/angular-touch.js"></script>
+    <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="lib/angular-ui-utils/ui-utils.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="lib/firebase/firebase.js"></script>
+    <script src="lib/angularfire/dist/angularfire.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="lib/ngstorage/ngStorage.js"></script>
+    <!-- endinjector -->
     <!-- endbuild -->
 
     <!-- build:js scripts/custom.js -->
-        <!-- injector:js -->
-        <script src="js/config.js"></script>
-        <script src="js/application.js"></script>
-        <script src="modules/core/core.js"></script>
-        <script src="modules/core/config/routes.js"></script>
-        <script src="modules/core/controllers/home.js"></script>
-        <!-- endinjector -->
+    <!-- injector:js -->
+    <script src="js/config.js"></script>
+    <script src="js/application.js"></script>
+    <script src="modules/core/core.js"></script>
+    <script src="modules/core/config/routes.js"></script>
+    <script src="modules/core/services/auth.js"></script>
+    <script src="modules/core/services/pushfactory.js"></script>
+    <script src="modules/core/directives/authdirective.js"></script>
+    <script src="modules/core/controllers/home.js"></script>
+    <script src="modules/core/controllers/owner-start-page.js"></script>
+    <!-- endinjector -->
     <!-- endbuild -->
+    <script src="cordova.js"></script>
 
   </body>
 </html>

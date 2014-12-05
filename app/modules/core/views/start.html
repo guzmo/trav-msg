@@ -1,0 +1,43 @@
+<h1> Välkommen {{user.username}}! </h1>
+
+<table class="table table-striped table-hover">
+	<thead>		
+		<tr>
+			<th>
+				Tränare				
+			</th>
+			<th>
+				Message
+			</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr	ng-repeat="entry in entries"
+			class=""
+			ng-click="">
+			
+			<td>
+				{{entry.coach}}
+			</td>
+			<td>
+				{{entry.message}}
+			</td>
+		</tr>
+	</tbody>
+
+</table>
+
+
+<div ng-repeat="entry in entries | orderBy : '-created'">
+	<div class="row featurette">
+		<div class="col-md-2">
+			<img class="featurette-image img-responsive table-image" ng-src="img/loaders/loader.gif" alt="Image not found.">
+		</div>
+		<div class="col-md-3 alignme">
+			<h2 class="featurette-heading" ng-cloak>{{entry.coach}}</h2>
+			<p ng-cloak>{{entry.message}}</p>
+			<p>{{entry.created}}</p>
+		</div>
+	</div>
+</div>

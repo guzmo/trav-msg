@@ -15,6 +15,10 @@
                         {
                             "xml": "<feature name=\"PushPlugin\"><param name=\"android-package\" value=\"com.plugin.gcm.PushPlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -74,6 +78,9 @@
             "PACKAGE_NAME": "se.travappar.travmsg"
         },
         "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "se.travappar.travmsg"
+        },
+        "org.apache.cordova.inappbrowser": {
             "PACKAGE_NAME": "se.travappar.travmsg"
         }
     },
