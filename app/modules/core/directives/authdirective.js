@@ -18,19 +18,9 @@ angular.module('core').directive('oauth',
             // restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
             // template: '',
             templateUrl: 'modules/core/views/auth.html',
-            // replace: true,
-            // transclude: true,
-            // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
             link: function($scope, iElm, iAttrs, controller) {
                $scope.googleLogin = function() {
-                    console.log("googleLogin");
-                    $cordovaOauth.google("229108461520-kto8p350n74qgla7erokj8ufui13b9to.apps.googleusercontent.com", 
-                        ['email', 'username']).then(function(result) {
-                        AuthFactory.setToken(result);
-                        $state.go('start');
-                    }, function(error) {
-                        console.log("error " + error);
-                    });
+                    AuthFactory.googleLogin();
                 };
 
                 $scope.isLoggedIn = function() {
@@ -39,7 +29,6 @@ angular.module('core').directive('oauth',
 
                 $scope.logout = function() {
                     AuthFactory.logout();
-                    $state.go('/');
                 };
             }
         };

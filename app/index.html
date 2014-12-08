@@ -23,19 +23,7 @@
 
   <body>
     <!-- =================== Navigation bar =================== -->
-    <div class="header-placeholder"></div>
-        <div role="main">
-            <header class="bs-header text-center navbar-fixed-top" id="overview">
-                <div class="container">
-                    <h1 id="app-heading">
-                        <img src="img/logo.png">
-                        <a ui-sref="home" class="headerlink">Travinfo Message </a>
-                    </h1>
-                    <oauth></oauth>
-                </div>
-            </header>
-        </div>
-    </div>
+    <div ng-include="'modules/core/views/header.html'"></div>
     <div role="main">
         <div class="container">
             <div class="row">
@@ -85,6 +73,7 @@
     <script src="modules/core/services/pushfactory.js"></script>
     <script src="modules/core/directives/authdirective.js"></script>
     <script src="modules/core/controllers/home.js"></script>
+    <script src="modules/core/controllers/login.js"></script>
     <script src="modules/core/controllers/owner-start-page.js"></script>
     <!-- endinjector -->
     <!-- endbuild -->
