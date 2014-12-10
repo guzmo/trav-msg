@@ -19,6 +19,14 @@
                         {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SpinnerDialog\"><param name=\"android-package\" value=\"hu.dpal.phonegap.plugins.SpinnerDialog\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -81,6 +89,12 @@
             "PACKAGE_NAME": "se.travappar.travmsg"
         },
         "org.apache.cordova.inappbrowser": {
+            "PACKAGE_NAME": "se.travappar.travmsg"
+        },
+        "org.apache.cordova.device": {
+            "PACKAGE_NAME": "se.travappar.travmsg"
+        },
+        "hu.dpal.phonegap.plugins.SpinnerDialog": {
             "PACKAGE_NAME": "se.travappar.travmsg"
         }
     },

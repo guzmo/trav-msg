@@ -1,22 +1,20 @@
 <div class="header-placeholder"></div>
-<div role="navigation" class="bs-header navbar navbar-inverse navbar-fixed-top" id="overview">
+<div role="navigation" class="bs-header navbar navbar-inverse navbar-fixed-top" id="overview" ng-controller="LoginController">
     <div class="container">
+        <backbutton></backbutton>
         <h1 id="app-heading">
             <img src="img/logo.png">
-            <a ui-sref="home" class="headerlink">Travinfo Message </a>
+            <a ui-sref="home" class="headerlink">Trav Msg</a>
         </h1>
-        <div class="navbar-header">
+        <div class="navbar-header" ng-if="isLoggedIn()">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div id="nav-collapse" class="collapse navbar-collapse nav navbar-nav" ng-controller="LoginController">
+            <div id="nav-collapse" class="collapse navbar-collapse nav navbar-nav">
                 <ul class="nav navbar-nav" ng-cloak>
-                    <li ng-if="!isLoggedIn()" data-toggle="collapse" data-target="#nav-collapse">
-                        <a ng-click="login()" ng-href="javascript:void(0)">Logga in</a>
-                    </li>
                     <li ng-if="isLoggedIn()" data-toggle="collapse" data-target="#nav-collapse">
                         <a ng-click="logout()" ng-href="javascript:void(0)">Logga ut</a>
                     </li>

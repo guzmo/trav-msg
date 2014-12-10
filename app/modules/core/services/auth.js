@@ -5,8 +5,9 @@
  * @name core.Services.Auth
  * @description Auth Factory
  */
-angular.module('core').factory('AuthFactory',['$state', '$http', '$sessionStorage', '$cordovaOauth', 
-    function($state, $http, $sessionStorage, $cordovaOauth) {
+angular.module('core').factory('AuthFactory',
+    ['$state', '$http', '$sessionStorage', '$cordovaOauth', '$cordovaSpinnerDialog', 'UserFactory', 'OauthProvider',
+    function($state, $http, $sessionStorage, $cordovaOauth, $cordovaSpinnerDialog, UserFactory, OauthProvider) {
 
             var authFactory = {};
 
@@ -16,9 +17,9 @@ angular.module('core').factory('AuthFactory',['$state', '$http', '$sessionStorag
              * @methodOf core.Services.Auth
              */
             authFactory.googleLogin = function() {
-                $cordovaOauth.google("229108461520-kto8p350n74qgla7erokj8ufui13b9to.apps.googleusercontent.com", 
-                    ['email', 'profile', 'https://www.googleapis.com/auth/plus.login']).then(function(result) {
-                    console.log(result);
+                $cordovaSpinnerDialog.show("Loggar in", "", true);
+                OauthProvider.google("229108461520-kto8p350n74qgla7erokj8ufui13b9to.apps.googleusercontent.com", 
+                    ['email', 'profile']).then(function(result) {
                     authFactory.setToken(result);
                     $http.get('https://www.googleapis.com/plus/v1/people/me', {
                         headers: {  
@@ -26,20 +27,28 @@ angular.module('core').factory('AuthFactory',['$state', '$http', '$sessionStorag
                                     'Authorization': 'Bearer ' + authFactory.getToken().access_token
                                 }
                         }).success(function(data) {
-                            console.log(data);
+                            authFactory.setUsername(data.name.givenName);
+                            UserFactory.createIfNotExists(data);
+                            $cordovaSpinnerDialog.hide();
+                            $state.go('start');
+                        }).error(function() {
+                            $cordovaSpinnerDialog.hide();
+                            alert("Fel vid autentiseringen.");
                         });
-                    $state.go('start');
                 }, function(error) {
-                    console.log("error " + error);
+                    $cordovaSpinnerDialog.hide();
+                    alert("Fel vid autentiseringen.");
                 });
             };
 
             authFactory.googleLogout = function() {
+                $cordovaSpinnerDialog.show("Loggar ut", "", true);
                 $http.get('https://accounts.google.com/o/oauth2/revoke?token=' + authFactory.getToken().access_token)
                     .success(function() {
-                        console.log("Successfully logged out from Google.");
+                        $cordovaSpinnerDialog.hide();
                     }).error(function(error) {
-                        console.log("Failed to logout from google: " + error);
+                        $cordovaSpinnerDialog.hide();
+                        alert("Något gick fel när vi skulle logga ut dig, gå in på google och avaktivera TravMsg för full utloggning.");
                     });
             };
 
@@ -72,6 +81,14 @@ angular.module('core').factory('AuthFactory',['$state', '$http', '$sessionStorag
                 return $sessionStorage.token != null;
             };
 
+            authFactory.setUsername = function(username) {
+                $sessionStorage.username = username;
+            };
+
+            authFactory.getUsername = function() {
+                return $sessionStorage.username;
+            };
+
             /**
             * @ngdoc function
             * @name core.Services.Auth#logout
@@ -80,8 +97,10 @@ angular.module('core').factory('AuthFactory',['$state', '$http', '$sessionStorag
             authFactory.logout = function() {
                 authFactory.googleLogout();
                 delete $sessionStorage.token;
+                delete $sessionStorage.username;
                 $state.go('home');
             };
 
             return authFactory;
-    }]);
+    }
+]);

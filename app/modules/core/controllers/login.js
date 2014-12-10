@@ -6,22 +6,21 @@
  * @description LoginController
  * @requires ng.$scope
 */
-angular
-    .module('core')
-    .controller('LoginController', ['$scope', 'AuthFactory',
-        function($scope, AuthFactory) {
-        	$scope.isLoggedIn = function() {
-        		console.log("Are we logged in? " + AuthFactory.hasToken());
-        		return AuthFactory.hasToken();
-        	};
+angular.module('core').controller('LoginController', 
+	['$scope', 'AuthFactory',
+    function($scope, AuthFactory) {
 
-        	$scope.logout = function() {
-        		AuthFactory.logout();
-        	};
+        $scope.isLoggedIn = function() {
+        	return AuthFactory.hasToken();
+        };
 
-        	$scope.login = function() {
-        		console.log("google login");
-        		AuthFactory.googleLogin();
-        	};
-        }
+        $scope.logout = function() {
+        	AuthFactory.logout();
+        };
+
+        $scope.login = function() {
+        	AuthFactory.googleLogin();
+        };
+
+    }
 ]);

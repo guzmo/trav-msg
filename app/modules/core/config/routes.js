@@ -46,7 +46,7 @@ angular
                             console.log("PELLE LOAD");
                             if (!AuthFactory.hasToken()) {
                                 console.log("PELLE LOAD fail not auth");
-                                $state.go('/');
+                                $state.go('home');
                             }
                         }]
                     }

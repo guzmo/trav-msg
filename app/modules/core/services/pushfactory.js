@@ -9,9 +9,6 @@ angular.module('core').factory('Pushfactory',
     ['$cordovaPush',
     function($cordovaPush) {
             
-
-
-
         document.addEventListener("deviceready", function () {
             console.log($cordovaPush);
             var config = {
@@ -19,31 +16,24 @@ angular.module('core').factory('Pushfactory',
                 "ecb":"window.onNotification"
             };
 
-             $cordovaPush.register(config).then(function(result) {
+            $cordovaPush.register(config).then(function(result) {
                     console.log('register success: ' + result);
                 }, function(err) {
                     console.log('register err: ' + result);
-             });
+            });
 
-                // $cordovaPush.unregister(options).then(function(result) {
-                //  alert('unregister success: ' + result);
-                // }, function(err) {
-                //  alert('unregister err: ' + result);
-                // });
+            // $cordovaPush.unregister(options).then(function(result) {
+            //  alert('unregister success: ' + result);
+            // }, function(err) {
+            //  alert('unregister err: ' + result);
+            // });
 
         });
-
-        $scope.$on('pushNotificationReceived', function(event, notification) {
-           alert("got push");
-        });
-
-
     }
 ]);
 
 
 window.onNotification = function(e) {
-    console.log("GOT EVENT");
     console.log(e);
     switch( e.event ) {
         case 'registered':

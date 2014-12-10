@@ -1,4 +1,4 @@
-'use strict';
+https://github.com/jonaseck2/generator-angularjs-cordova.git'use strict';
 
 
 module.exports = function(grunt) {
@@ -453,7 +453,7 @@ module.exports = function(grunt) {
             'autoprefixer',
             'concat',
             'ngmin',
-            'copy:dist']
+            'copy:dist'];
 
         if (target == 'cordova') {
             tasks.push('sed:fixoauthRedirect');
